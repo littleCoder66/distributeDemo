@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/distributeDemo.iml" filepath="$PROJECT_DIR$/.idea/distributeDemo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/dubbo_api/dubbo_api.iml" filepath="$PROJECT_DIR$/dubbo_api/dubbo_api.iml" />
+      <module fileurl="file://$PROJECT_DIR$/dubbo_provider/dubbo_provider.iml" filepath="$PROJECT_DIR$/dubbo_provider/dubbo_provider.iml" />
     </modules>
   </component>
 </project>

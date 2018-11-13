@@ -3,7 +3,7 @@ import java.util.concurrent.CountDownLatch;
 public class CountDownLatchTest {
     public static void main(String[] args) throws InterruptedException {
 
-        final CountDownLatch countDownLatch = new CountDownLatch(2) {
+        final CountDownLatch countDownLatch = new CountDownLatch(1) {
             @Override
             public void await() throws InterruptedException {
                 super.await();
@@ -45,6 +45,8 @@ public class CountDownLatchTest {
 
         countDownLatch.await();
     }
+
+
 
 
 }
