@@ -1,4 +1,6 @@
 /target
 /out
-/.idea
+*.idea
 /out
+/.gitignore
+/.idea
