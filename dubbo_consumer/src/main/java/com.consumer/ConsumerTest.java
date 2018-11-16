@@ -1,5 +1,6 @@
 package com.consumer;
 
+import com.api.service.DemoService;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import java.io.IOException;
@@ -15,7 +16,7 @@ public class ConsumerTest {
         context.start();
         DemoService demoService = (DemoService) context.getBean("demoService");
 
-        System.out.println(demoService.sayHello("哈哈哈"));
+        System.out.println(demoService.sayHello(" worl!"));
         try {
             System.in.read();
         } catch (IOException e) {
