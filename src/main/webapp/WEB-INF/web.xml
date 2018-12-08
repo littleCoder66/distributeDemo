@@ -1,6 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" version="3.0">
   <display-name>helloworld</display-name>
+  <!-- Spring配置 -->
+  <context-param>
+    <param-name>contextConfigLocation</param-name>
+    <param-value> classpath:spring/applicationContext.xml</param-value>
+  </context-param>
+  <listener>
+    <listener-class>
+      org.springframework.web.context.ContextLoaderListener
+    </listener-class>
+  </listener>
   <!-- 配置编码方式-->
   <filter>
     <filter-name>encodingFilter</filter-name>
@@ -37,22 +47,12 @@
     <url-pattern>/</url-pattern>
   </servlet-mapping>
 
-  <!-- Spring配置 -->
-  <listener>
-    <listener-class>
-      org.springframework.web.context.ContextLoaderListener
-    </listener-class>
-  </listener>
   <!-- 取消对某一类文件的拦截-->
   <servlet-mapping>
     <servlet-name>default</servlet-name>
     <url-pattern>*.md</url-pattern>
   </servlet-mapping>
 
-  <context-param>
-    <param-name>contextConfigLocation</param-name>
-    <param-value> classpath:spring/applicationContext.xml</param-value>
-  </context-param>
   <!-- 欢迎页面-->
   <welcome-file-list>
     <welcome-file>/WEB-INF/index.jsp</welcome-file>
