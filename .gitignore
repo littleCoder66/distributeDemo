@@ -3,6 +3,6 @@
 *.idea
 /out
 /.gitignore
-/.idea
+/.idea**
 /.jar
 /jar

@@ -21,19 +21,33 @@ public class LockTest {
                 test.lock2();
                 }
         }.start();
+//        (new Runnable(){
+//            @Override
+//            public void run() {
+//                test.lock1();
+//            }
+//        }).run();
+//
+//        (new Runnable(){
+//            @Override
+//            public void run() {
+//                test.lock2();
+//            }
+//        }).run();
+
     }
 
 
 
-    public synchronized  void lock2(){
+    public  synchronized void lock2(){
         for(int i=0;i<1000000;i++)
-        System.out.println("synchronize 方法lock2");
+        System.out.println("synchronize---------- 方法lock2");
     }
     public   void lock1(){
-        synchronized (this){
+//         (this){
             for(int i=0;i<1000000;i++)
                 System.out.println("synchronize 代码块lock1");
-        }
+//        }
     }
 
 }
