@@ -1,4 +1,7 @@
-/target
+/target/
+.classpath
+.project
+.settings
 /out
 *.idea
 /out
