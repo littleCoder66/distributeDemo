@@ -1,3 +1,5 @@
+import org.junit.Test;
+
 import java.util.LinkedList;
 
 /**
@@ -11,6 +13,12 @@ public class BasicsTest<E> {
     static transient int size = 0;
     static transient Node first;
     static transient Node last;
+
+    @Test
+    public void name() {
+        System.out.println("junit test");
+    }
+
     public static void main(String[]args){
         Node e;
         final Node f = first;
