@@ -42,4 +42,13 @@ public class BasicsTest<E> {
             this.prev = prev;
         }
     }
+
+    @Test
+    public void StringTest(){
+        String s1= "abc";
+        String s2=new String("abc");
+        System.out.println(s1==s2);
+        System.out.println(System.identityHashCode(s1));
+        System.out.println(System.identityHashCode(s2));
+    }
 }
