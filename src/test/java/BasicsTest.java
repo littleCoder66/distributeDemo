@@ -1,3 +1,5 @@
+import org.junit.Test;
+
 import java.util.LinkedList;
 
 /**
@@ -11,6 +13,12 @@ public class BasicsTest<E> {
     static transient int size = 0;
     static transient Node first;
     static transient Node last;
+
+    @Test
+    public void name() {
+        System.out.println("junit test");
+    }
+
     public static void main(String[]args){
         Node e;
         final Node f = first;
@@ -33,5 +41,15 @@ public class BasicsTest<E> {
             this.next = next;
             this.prev = prev;
         }
+    }
+
+    @Test
+    public void StringTest(){
+        String s1= "abc";
+        String s2=new String("abc");
+        String s3 = "abc";
+        System.out.println(s1==s2);
+        System.out.println(System.identityHashCode(s1));
+        System.out.println(System.identityHashCode(s3));
     }
 }

@@ -19,7 +19,13 @@ public class EchoServerHandler extends ChannelInboundHandlerAdapter {
         System.out.println("Server received: " + ByteBufUtil
                 .hexDump(bb.readBytes(bb.readableBytes())));
         bb.resetReaderIndex();
-        ctx.write(msg);
+        /**回复消息
+         * copiedBuffer：创建一个新的缓冲区，内容为里面的参数
+         * 通过 ChannelHandlerContext 的 write 方法将消息异步发送给客户端
+         * */
+        String respMsg = "I am Server，消息接收 success!";
+        ByteBuf respByteBuf = Unpooled.copiedBuffer(respMsg.getBytes());
+        ctx.write(respByteBuf);
     }
 
     @Override
