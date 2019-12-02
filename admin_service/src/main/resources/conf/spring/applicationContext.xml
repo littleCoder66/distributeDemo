@@ -43,9 +43,9 @@
         <!--<property name="validationQuery" value="select 1"/>-->
     <!--</bean>-->
     <!-- 扫描basePackage下所有的接口 -->
-    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-        <property name="basePackage" value="com.pptv.cusp.repository.mybatis"/>
-    </bean>
+    <!--<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">-->
+        <!--<property name="basePackage" value="com.pptv.cusp.repository.mybatis"/>-->
+    <!--</bean>-->
 
     <!--<bean id="sqlRecInterceptor" class="com.pptv.cusp.interceptor.SqlRecordInterceptor"></bean>-->
 
@@ -104,10 +104,10 @@
     <!--<aop:aspectj-autoproxy proxy-target-class="true"/>-->
 
     <!--定时器扫描-->
-    <task:annotation-driven executor="threadPoolTaskExecutor" scheduler="scheduler"/>
-    <!--线程池配置-->
-    <task:executor id="threadPoolTaskExecutor" pool-size="12" queue-capacity="100000"/>
-    <task:scheduler id="scheduler" pool-size="12"/>
+    <!--<task:annotation-driven executor="threadPoolTaskExecutor" scheduler="scheduler"/>-->
+    <!--&lt;!&ndash;线程池配置&ndash;&gt;-->
+    <!--<task:executor id="threadPoolTaskExecutor" pool-size="12" queue-capacity="100000"/>-->
+    <!--<task:scheduler id="scheduler" pool-size="12"/>-->
 
     <!--<bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">-->
         <!--<property name="dataSource" ref="dataSource"/>-->
@@ -126,34 +126,21 @@
     <!--</bean>-->
 
     <!-- SMTP邮件服务配置 -->
-    <bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
-        <property name="host" value="${email.host}"/>
-        <property name="port" value="${email.port}"/>
-        <property name="username" value="${email.username}"/>
-        <property name="password" value="${email.password}"/>
-        <property name="defaultEncoding" value="UTF-8"/>
-        <property name="javaMailProperties">
-            <props>
-                <prop key="mail.smtp.auth">true</prop>
-                <prop key="mail.smtp.timeout">25000</prop>
-            </props>
-        </property>
-    </bean>
+    <!--<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">-->
+        <!--<property name="host" value="${email.host}"/>-->
+        <!--<property name="port" value="${email.port}"/>-->
+        <!--<property name="username" value="${email.username}"/>-->
+        <!--<property name="password" value="${email.password}"/>-->
+        <!--<property name="defaultEncoding" value="UTF-8"/>-->
+        <!--<property name="javaMailProperties">-->
+            <!--<props>-->
+                <!--<prop key="mail.smtp.auth">true</prop>-->
+                <!--<prop key="mail.smtp.timeout">25000</prop>-->
+            <!--</props>-->
+        <!--</property>-->
+    <!--</bean>-->
 
-    <!-- 运营商后台邮件服务配置 -->
-    <bean id="fcuspMailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
-        <property name="host" value="${email.host}"/>
-        <property name="port" value="${email.port}"/>
-        <property name="username" value="${fcuspemail.username}"/>
-        <property name="password" value="${fcuspemail.password}"/>
-        <property name="defaultEncoding" value="UTF-8"/>
-        <property name="javaMailProperties">
-            <props>
-                <prop key="mail.smtp.auth">true</prop>
-                <prop key="mail.smtp.timeout">25000</prop>
-            </props>
-        </property>
-    </bean>
+
 
     <!-- 注解方式在bean中注入.properties文件中的配置 -->
     <!--<bean id="configProperties"-->
