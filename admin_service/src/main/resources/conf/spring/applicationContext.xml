@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:jdbc="http://www.springframework.org/schema/jdbc" xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:task="http://www.springframework.org/schema/task"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.2.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd
+		http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-3.2.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.2.xsd
+		http://www.springframework.org/schema/task
+		http://www.springframework.org/schema/task/spring-task-3.2.xsd
+		http://www.springframework.org/schema/data/jpa">
+    <description>Spring公共配置</description>
+
+    <!-- 使用annotation 自动注册bean, 并保证@Required、@Autowired的属性被注入 -->
+    <context:component-scan base-package="cn.distri">
+        <context:exclude-filter type="annotation"
+                                expression="org.springframework.stereotype.Controller"/>
+    </context:component-scan>
+
+    <!-- <context:property-placeholder ignore-unresolvable="true" location="classpath*:/application.properties"
+        /> -->
+
+    <!--<bean id="dataSource" class="org.apache.tomcat.jdbc.pool.DataSource"-->
+          <!--destroy-method="close">-->
+        <!--&lt;!&ndash; Connection Info &ndash;&gt;-->
+        <!--<property name="driverClassName" value="${jdbc.driver}"/>-->
+        <!--<property name="url" value="${jdbc.url}"/>-->
+        <!--<property name="username" value="${jdbc.username}"/>-->
+        <!--<property name="password" value="${jdbc.password}"/>-->
+        <!--<property name="connectionProperties" value="${connectionProperties}"/>-->
+        <!--&lt;!&ndash; Connection Pooling Info &ndash;&gt;-->
+        <!--<property name="maxActive" value="${jdbc.pool.maxActive}"/>-->
+        <!--<property name="maxIdle" value="${jdbc.pool.maxIdle}"/>-->
+        <!--<property name="defaultAutoCommit" value="${defaultAutoCommit}"/>-->
+        <!--&lt;!&ndash; 连接Idle半个小时后超时，每15分钟检查一次 &ndash;&gt;-->
+        <!--<property name="timeBetweenEvictionRunsMillis" value="${timeBetweenEvictionRunsMillis}"/>-->
+        <!--<property name="minEvictableIdleTimeMillis" value="${minEvictableIdleTimeMillis}"/>-->
+        <!--<property name="testOnBorrow" value="true"/>-->
+        <!--<property name="validationInterval" value="34000"/>-->
+        <!--<property name="validationQuery" value="select 1"/>-->
+    <!--</bean>-->
+    <!-- 扫描basePackage下所有的接口 -->
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="basePackage" value="com.pptv.cusp.repository.mybatis"/>
+    </bean>
+
+    <!--<bean id="sqlRecInterceptor" class="com.pptv.cusp.interceptor.SqlRecordInterceptor"></bean>-->
+
+    <!--<bean id="RedisConfig" class="com.pptv.cusp.utils.RedisConfig">
+        <constructor-arg name="host" type="java.lang.String"
+            value="${redis.host}"></constructor-arg>
+        <constructor-arg name="port" type="int" value="${redis.port}"></constructor-arg>
+        <constructor-arg name="maxActive" type="int"
+            value="${redis.maxActive}"></constructor-arg>
+        <constructor-arg name="maxIdle" type="int"
+            value="${redis.maxIdle}"></constructor-arg>
+        <constructor-arg name="minIdle" type="int"
+            value="${redis.minIdle}"></constructor-arg>
+    </bean>-->
+    <!--<bean id="RedisConfigCodis" class="com.pptv.cusp.utils.RedisConfig">-->
+        <!--<constructor-arg name="host" type="java.lang.String"-->
+                         <!--value="${redis.host.codis}"></constructor-arg>-->
+        <!--<constructor-arg name="port" type="int" value="${redis.port.codis}"></constructor-arg>-->
+        <!--<constructor-arg name="maxActive" type="int"-->
+                         <!--value="${redis.maxActive.codis}"></constructor-arg>-->
+        <!--<constructor-arg name="maxIdle" type="int"-->
+                         <!--value="${redis.maxIdle.codis}"></constructor-arg>-->
+        <!--<constructor-arg name="minIdle" type="int"-->
+                         <!--value="${redis.minIdle.codis}"></constructor-arg>-->
+    <!--</bean>-->
+
+    <!--<bean id="order" class="com.pptv.cusp.service.admin.OrderService">-->
+    <!--</bean>-->
+
+    <!--<bean id="initRe" class="com.pptv.cusp.init.Initialization"-->
+          <!--init-method="init" lazy-init="false"></bean>-->
+    <!--&lt;!&ndash; MyBatis配置 &ndash;&gt;-->
+    <!--<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">-->
+        <!--<property name="dataSource" ref="dataSource"/>-->
+        <!--&lt;!&ndash; 自动扫描entity目录, 省掉Configuration.xml里的手工配置 &ndash;&gt;-->
+        <!--<property name="typeAliasesPackage" value="com.pptv.cusp.entity"/>-->
+        <!--&lt;!&ndash; 显式指定Mapper文件位置 &ndash;&gt;-->
+        <!--<property name="mapperLocations" value="classpath:/mybatis/*Mapper.xml"/>-->
+
+        <!--<property name="plugins">-->
+            <!--<ref bean="sqlRecInterceptor"/>-->
+        <!--</property>-->
+    <!--</bean>-->
+
+
+    <!--<bean name="transactionManager"-->
+          <!--class="org.springframework.jdbc.datasource.DataSourceTransactionManager">-->
+        <!--<property name="dataSource" ref="dataSource"></property>-->
+    <!--</bean>-->
+
+    <!-- 使用annotation定义事务 -->
+    <!--<tx:annotation-driven transaction-manager="transactionManager"-->
+                          <!--proxy-target-class="true"/>-->
+
+    <!--&lt;!&ndash; 定义aspectj &ndash;&gt;-->
+    <!--<aop:aspectj-autoproxy proxy-target-class="true"/>-->
+
+    <!--定时器扫描-->
+    <task:annotation-driven executor="threadPoolTaskExecutor" scheduler="scheduler"/>
+    <!--线程池配置-->
+    <task:executor id="threadPoolTaskExecutor" pool-size="12" queue-capacity="100000"/>
+    <task:scheduler id="scheduler" pool-size="12"/>
+
+    <!--<bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">-->
+        <!--<property name="dataSource" ref="dataSource"/>-->
+    <!--</bean>-->
+    <!--<bean id="backConstant" class="com.pptv.cusp.utils.BackConstant">-->
+        <!--<property name="returnHost" value="${return.host}"></property>-->
+    <!--</bean>-->
+
+    <!--java monitor 需要监控的方法-->
+    <!--<bean  id="mnonitoringSpringAdvisor" class="net.bull.javamelody.MonitoringSpringAdvisor">-->
+    <!--<property name="pointcut">-->
+    <!--<bean class="org.springframework.aop.support.JdkRegexpMethodPointcut">-->
+    <!--<property name="pattern" value="com.pptv.cusp.service.app.unicom.parse.*"></property>-->
+    <!--</bean>-->
+    <!--</property>-->
+    <!--</bean>-->
+
+    <!-- SMTP邮件服务配置 -->
+    <bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+        <property name="host" value="${email.host}"/>
+        <property name="port" value="${email.port}"/>
+        <property name="username" value="${email.username}"/>
+        <property name="password" value="${email.password}"/>
+        <property name="defaultEncoding" value="UTF-8"/>
+        <property name="javaMailProperties">
+            <props>
+                <prop key="mail.smtp.auth">true</prop>
+                <prop key="mail.smtp.timeout">25000</prop>
+            </props>
+        </property>
+    </bean>
+
+    <!-- 运营商后台邮件服务配置 -->
+    <bean id="fcuspMailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+        <property name="host" value="${email.host}"/>
+        <property name="port" value="${email.port}"/>
+        <property name="username" value="${fcuspemail.username}"/>
+        <property name="password" value="${fcuspemail.password}"/>
+        <property name="defaultEncoding" value="UTF-8"/>
+        <property name="javaMailProperties">
+            <props>
+                <prop key="mail.smtp.auth">true</prop>
+                <prop key="mail.smtp.timeout">25000</prop>
+            </props>
+        </property>
+    </bean>
+
+    <!-- 注解方式在bean中注入.properties文件中的配置 -->
+    <!--<bean id="configProperties"-->
+          <!--class="org.springframework.beans.factory.config.PropertiesFactoryBean">-->
+        <!--<property name="locations">-->
+            <!--<list>-->
+                <!--<value>classpath:server.properties</value>-->
+            <!--</list>-->
+        <!--</property>-->
+    <!--</bean>-->
+
+</beans>

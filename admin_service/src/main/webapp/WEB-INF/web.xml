@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+         version="3.0">
+
+  <context-param>
+    <param-name>contextConfigLocation</param-name>
+    <param-value>
+      classpath*:/conf/spring/applicationContext.xml
+    </param-value>
+  </context-param>
+  <listener>
+    <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+  </listener>
+
+  <filter>
+    <filter-name>encodingFilter</filter-name>
+    <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+    <async-supported>true</async-supported>
+    <init-param>
+      <param-name>encoding</param-name>
+      <param-value>UTF-8</param-value>
+    </init-param>
+    <init-param>
+      <param-name>forceEncoding</param-name>
+      <param-value>true</param-value>
+    </init-param>
+  </filter>
+  <filter-mapping>
+    <filter-name>encodingFilter</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
+
+  <!--<filter>-->
+    <!--<filter-name>monitorSecurityFilter</filter-name>-->
+    <!--<filter-class>com.pptv.cusp.filter.MonitorSecurityFilter</filter-class>-->
+    <!--&lt;!&ndash;<init-param>&ndash;&gt;-->
+    <!--&lt;!&ndash;<param-name>targetFilterLifecycle</param-name>&ndash;&gt;-->
+    <!--&lt;!&ndash;<param-value>true</param-value>&ndash;&gt;-->
+    <!--&lt;!&ndash;</init-param>&ndash;&gt;-->
+    <!--&lt;!&ndash;<async-supported>true</async-supported>&ndash;&gt;-->
+  <!--</filter>-->
+  <!--<filter-mapping>-->
+    <!--<filter-name>monitorSecurityFilter</filter-name>-->
+    <!--<url-pattern>/monitoring</url-pattern>-->
+  <!--</filter-mapping>-->
+
+  <!--<filter>-->
+    <!--<filter-name>webServiceIpFilter</filter-name>-->
+    <!--<filter-class>com.pptv.cusp.filter.WebServiceIpFilter</filter-class>-->
+  <!--</filter>-->
+
+  <!--<filter-mapping>-->
+    <!--<filter-name>webServiceIpFilter</filter-name>-->
+    <!--<url-pattern>/services/*</url-pattern>-->
+  <!--</filter-mapping>-->
+
+  <filter>
+    <filter-name>shiroFilter</filter-name>
+    <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+    <async-supported>true</async-supported>
+    <init-param>
+      <param-name>targetFilterLifecycle</param-name>
+      <param-value>true</param-value>
+    </init-param>
+  </filter>
+  <filter-mapping>
+    <filter-name>shiroFilter</filter-name>
+    <url-pattern>/*</url-pattern>
+    <dispatcher>REQUEST</dispatcher>
+    <dispatcher>ASYNC</dispatcher>
+  </filter-mapping>
+
+
+
+  <!--java melody filter start-->
+  <filter>
+    <filter-name>javamelody</filter-name>
+    <filter-class>net.bull.javamelody.MonitoringFilter</filter-class>
+    <async-supported>true</async-supported>
+    <!--排除对束态文件的监控,js, css , image -->
+    <init-param>
+      <param-name>url-exclude-pattern</param-name>
+      <param-value>/static/.*</param-value>
+    </init-param>
+  </filter>
+  <filter-mapping>
+    <filter-name>javamelody</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
+  <!-- 对session进行监控 -->
+
+  <listener>
+    <listener-class>net.bull.javamelody.SessionListener</listener-class>
+  </listener>
+  <!--java melody filter end-->
+
+  <servlet>
+    <servlet-name>springServlet</servlet-name>
+    <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+    <init-param>
+      <param-name>contextConfigLocation</param-name>
+      <param-value>/WEB-INF/spring-mvc.xml</param-value>
+    </init-param>
+    <load-on-startup>1</load-on-startup>
+    <async-supported>true</async-supported>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>springServlet</servlet-name>
+    <url-pattern>/</url-pattern>
+  </servlet-mapping>
+  <!--<filter>-->
+    <!--<filter-name>XssSqlFilter</filter-name>-->
+    <!--<filter-class>com.pptv.cusp.filter.XssFilter</filter-class>-->
+    <!--<async-supported>true</async-supported>-->
+  <!--</filter>-->
+  <!--<filter-mapping>-->
+    <!--<filter-name>XssSqlFilter</filter-name>-->
+    <!--<url-pattern>/*</url-pattern>-->
+    <!--<dispatcher>REQUEST</dispatcher>-->
+    <!--<dispatcher>FORWARD</dispatcher>-->
+  <!--</filter-mapping>-->
+  <session-config>
+    <session-timeout>60</session-timeout>
+  </session-config>
+
+  <!--<error-page>-->
+    <!--<exception-type>java.lang.Throwable</exception-type>-->
+    <!--<location>/WEB-INF/views/error/500.jsp</location>-->
+  <!--</error-page>-->
+  <!--<error-page>-->
+    <!--<exception-type>com.pptv.cusp.exception.AccessForbiddenException</exception-type>-->
+    <!--<location>/WEB-INF/views/error/403.jsp</location>-->
+  <!--</error-page>-->
+  <!--<error-page>-->
+    <!--<error-code>500</error-code>-->
+    <!--<location>/WEB-INF/views/error/500.jsp</location>-->
+  <!--</error-page>-->
+  <!--<error-page>-->
+    <!--<error-code>404</error-code>-->
+    <!--<location>/WEB-INF/views/error/404.jsp</location>-->
+  <!--</error-page>-->
+  <!--<error-page>-->
+    <!--<error-code>403</error-code>-->
+    <!--<location>/WEB-INF/views/error/403.jsp</location>-->
+  <!--</error-page>-->
+
+</web-app>
+        
